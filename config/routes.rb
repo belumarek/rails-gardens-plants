@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :gardens do
+    resources :plants, only: :create
+  end
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :plants, only: [:destroy] do
+    resources :plant_tags, only: [ :new, :create ]
+  end
 end
